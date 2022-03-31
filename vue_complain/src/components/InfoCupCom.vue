@@ -1,0 +1,158 @@
+<template>
+  <div id="page-wrapper">
+        <header id="main-header">
+            <hgroup>
+                <h1 class="master-title">다양한 정보 소개 사이트</h1>
+                <h2 class="master-description">잡학사전</h2>
+            </hgroup>
+        </header>
+        <nav id="main-navigation">
+            <div class="pull-left">
+                <ul class="outer-menu">
+                    <li class="outer-menu-item"
+                        v-on:mouseover="isShow = true"
+                        v-on:mouseleave="isShow = false">
+                        <span class="menu-title">About</span>
+                        <ul class="inner-menu" v-if="isShow">
+                            <li class="inner-menu-item">
+                                <router-link to="/">Home</router-link> |
+                            </li>
+                            <li class="inner-menu-item">
+                                <router-link to="/complain">Complain</router-link> |
+                            </li>
+                            <li class="inner-menu-item">
+                                <router-link to="/register">회원가입</router-link> |
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="outer-menu-item"
+                        v-on:mouseover="isShow02 = true"
+                        v-on:mouseleave="isShow02 = false">
+                        <span class="menu-title">상품정보</span>
+                        <ul class="inner-menu" v-if="isShow02">
+                            <li class="inner-menu-item">
+                                <router-link to="/infocup">컵소개</router-link> |
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="outer-menu-item"
+                        v-on:mouseover="isShow03 = true"
+                        v-on:mouseleave="isShow03 = false">
+                        <span class="menu-title">찾아오시는길</span>
+                        <ul class="inner-menu" v-if="isShow03">
+                            <li class="inner-menu-item">
+                                <router-link to="#">더미데이터</router-link> |
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="pull-right">
+                <div class="search-bar">
+                    <form>
+                        <input type="text" class="input-search" />
+                        <input type="submit" class="input-search-submit" value="검색" />
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <div id="content">
+            <section id="main-section">
+                <article>
+                    <!-- 컵 소개 -->
+                    <div class="article-body">
+                        <div id="container">
+                            <h1 id="heading">에디오피아 게뎁</h1>
+                            <div id="prod-pic">
+                                <img src="@/assets/images/coffee-pink.jpg" alt="에디오피아 게뎁" id="cup" width="200" height="200">
+                                <div id="small-pic"> 
+                                    <img src="@/assets/images/coffee-pink.jpg" class="small">
+                                    <img src="@/assets/images/coffee-blue.jpg" class="small">
+                                    <img src="@/assets/images/coffee-gray.jpg" class="small">
+                               </div>
+                            </div>			
+                            <div id="desc">
+                                <ul>
+                                    <li>상품명 : 에디오피아 게뎁</li>
+                                    <li class="bluetext">판매가 : 9,000원</li>
+                                    <li>배송비 : 3,000원<br>(50,000원 이상 구매시 무료)</li>
+                                    <li>적립금 : 180원(2%)</li>
+                                    <li>로스팅 : 2019.06.17</li>
+                                    <button>장바구니 담기</button>
+                                </ul>				
+                                <a href="#" id="view" v-on:click="showDetail()">상세 설명 보기</a>				
+                            </div>
+                                
+                            <div id="detail">									
+                                <hr>
+                                <h2>상품 상세 정보</h2>
+                                <ul>
+                                    <li>원산지 : 에디오피아</li>
+                                    <li>지 역 : 이르가체프 코체레</li>
+                                    <li>농 장 : 게뎁</li>
+                                    <li>고 도 : 1,950 ~ 2,000 m</li>
+                                    <li>품 종 : 지역 토착종</li>
+                                    <li>가공법 : 워시드</li>
+                                </ul>
+                                <h3>Information</h3>
+                                <p>2차 세계대전 이후 설립된 게뎁농장은 유기농 인증 농장으로 여성의 고용 창출과 지역사회 발전에 기여하며 3대째 이어져 내려오는 오랜 역사를 가진 농장입니다. 게뎁 농장은 SCAA 인증을 받은 커피 품질관리 실험실을 갖추고 있어 철처한 관리를 통해 스페셜티커피를 생산합니다.</p>
+                                <h3>Flavor Note</h3>
+                                <p>은은하고 다채로운 꽃향, 망고, 다크 체리, 달달함이 입안 가득.</p>
+                                <a href="#" id="hide" v-on:click="hideDetail()">상세 설명 닫기</a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </section>
+            <aside id="main-aside">
+                <div class="aside-list">
+                    <h3>카테고리</h3>
+                    <ul>
+                        <li><a href="#">데이터</a></li>
+                    </ul>
+                </div>
+                <div class="aside-list">
+                    <h3>최근 글</h3>
+                    <ul>
+                        <li><a href="#">데이터</a></li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+        <!-- <footer id="main-footer">
+            <a href="#">Created By Team-HeXagon, Kang Tae Gyung </a>
+        </footer> -->
+	</div>
+</template>
+
+<script>
+import { initPic, showDetail, hideDetail} from "@/util/info_cup.js"
+
+export default {
+    mounted() {
+        // 화면이 모두 로딩될 때
+        initPic();
+    },
+    methods: {
+        // Vue에서 만든 함수
+        showDetail: function() {
+            // 바닐라에서 만든 함수
+            showDetail();
+        },
+        hideDetail: function() {
+            hideDetail();
+        }
+    },
+    data() {
+        return {
+            isShow: false,
+            isShow02: false,
+            isShow03: false
+        }
+    }
+}
+</script>
+
+<style scoped>
+    @import "@/assets/css/product.css"
+</style>
